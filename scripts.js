@@ -1,6 +1,8 @@
 //minute is still showing negative numbers
 //seconds show 0 before changing to a different minute
 //when it's only single digit, use 09, 08 etc
+//add buttons for user to continue or to take a break
+//save the number of poms the user has done 
 
 
 var timeSec = 60;
