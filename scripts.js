@@ -16,6 +16,9 @@ function init(){
         buttons[i].style.display = "none";
     }
 
+    //remove extra zero from sec
+    removeExtraZero(document.getElementsByClassName("extra-zero")[1]);
+    
     letItCount();
 }
 
@@ -33,8 +36,8 @@ function letItCount(){
             if (min > 0){
                 min-=1;
             }
-            if (!isBreak){
-                sec = 1;
+            if (isBreak === true){
+                sec = 5;
             }
             changeMin(min);
             isFirst = false;
@@ -58,7 +61,7 @@ function letItCount(){
                 buttons[i].style.display = "initial";
             }
         } else if(sec === 0){
-            sec = 1;
+            sec = 10;
             changeSec(sec);
             document.getElementsByClassName("extra-zero")[1].style.display = "none";
             min -=1;
@@ -96,8 +99,8 @@ function stopIt(){
 buttons[1].addEventListener("click", function(){
     isFirst = true;
     isBreak = false;
-    min = 2;
-    sec = 1;
+    min = 1;
+    sec = 10;
     letItCount();
     this.style.display = "none";
     buttons[0].style.display = "none";
@@ -108,7 +111,7 @@ buttons[1].addEventListener("click", function(){
 buttons[0].addEventListener("click", function(){
     isFirst = true;
     isBreak = true;
-    min = 1;
+    min = 0;
     letItCount();
     this.style.display = "none";
     buttons[1].style.display = "none";
