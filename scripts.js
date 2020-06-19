@@ -1,4 +1,4 @@
-//event listner has issues
+//event listner has issues - take a break doesnt work
 //save the number of poms the user has done 
 
 var isFirst = true;
@@ -34,7 +34,7 @@ function letItCount(){
                 min-=1;
             }
             if (!isBreak){
-                sec = 60;
+                sec = 1;
             }
             changeMin(min);
             isFirst = false;
@@ -58,7 +58,7 @@ function letItCount(){
                 buttons[i].style.display = "initial";
             }
         } else if(sec === 0){
-            sec = 59;
+            sec = 1;
             changeSec(sec);
             document.getElementsByClassName("extra-zero")[1].style.display = "none";
             min -=1;
@@ -97,7 +97,7 @@ buttons[1].addEventListener("click", function(){
     isFirst = true;
     isBreak = false;
     min = 2;
-    sec = 60;
+    sec = 1;
     letItCount();
     this.style.display = "none";
     buttons[0].style.display = "none";

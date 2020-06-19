@@ -34,10 +34,21 @@ h2 {
 .btn {
     font-size: 2.5rem;
     margin: 0 10px;
+    border: 5px solid white;
+    border-radius: 40px;
+    padding: 25px 40px;
 }
 
 .message-container {
     /* reserve a space for it */
     display: block;
     height: 20%;
+}
+
+.break {
+    background-color: rgb(23, 243, 16);
+}
+
+.work {
+    background-color: brown;
 }
