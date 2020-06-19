@@ -2,6 +2,7 @@
 //save the number of poms the user has done 
 
 var isFirst = true;
+var isBreak = false;
 var min = Number(document.getElementById("min").textContent);
 var sec = Number(document.getElementById("sec").textContent);
 var buttons = document.querySelectorAll(".btn");
@@ -20,19 +21,28 @@ function init(){
 
 function letItCount(){
     pomoCountDown = setInterval(function(){
+        //remove extra zeros
+        if(sec >= 10){
+            removeExtraZero(document.getElementsByClassName("extra-zero")[1]);
+        }
+        if(min >= 10){
+            removeExtraZero(document.getElementsByClassName("extra-zero")[0]);
+        }
+        
         if (isFirst){
-            min-=1;
-            sec = 5;
+            if (min > 0){
+                min-=1;
+            }
+            if (!isBreak){
+                sec = 60;
+            }
             changeMin(min);
             isFirst = false;
         }
         
         sec-=1;
         changeSec(sec);
-        
-        console.log("sec = ",sec);
-        console.log("min = ", min);
-    
+
         //add extra zero when min/sec is less than 10
         if (min < 10){
             addExtraZero(document.getElementsByClassName("extra-zero")[0]);
@@ -48,7 +58,7 @@ function letItCount(){
                 buttons[i].style.display = "initial";
             }
         } else if(sec === 0){
-            sec = 5;
+            sec = 59;
             changeSec(sec);
             document.getElementsByClassName("extra-zero")[1].style.display = "none";
             min -=1;
@@ -65,9 +75,13 @@ function changeSec(sec){
 function changeMin(min){
     document.getElementById("min").textContent = min;
 }
-
+//add extra zero
 function addExtraZero(element){
-    element.textContent = 0;
+    element.style.display = "initial";
+}
+//remove extra zero
+function removeExtraZero(element){
+    element.style.display = "none";
 }
 
 //stopping the countdown
@@ -77,9 +91,26 @@ function stopIt(){
 }
 
 
-//add event listners
+//add event listeners
+//continue working
 buttons[1].addEventListener("click", function(){
-    min = 1;
-    sec = 5;
+    isFirst = true;
+    isBreak = false;
+    min = 2;
+    sec = 60;
     letItCount();
+    this.style.display = "none";
+    buttons[0].style.display = "none";
+    document.querySelectorAll(".message")[0].textContent = "";
+})
+
+//take a break 
+buttons[0].addEventListener("click", function(){
+    isFirst = true;
+    isBreak = true;
+    min = 1;
+    letItCount();
+    this.style.display = "none";
+    buttons[1].style.display = "none";
+    document.querySelectorAll(".message")[0].textContent = "";
 })
