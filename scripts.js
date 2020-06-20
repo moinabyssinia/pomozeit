@@ -1,13 +1,12 @@
-//event listner has issues - take a break doesnt work
+//fix the audio plug
 //save the number of poms the user has done 
 
 var isFirst = true;
-var isBreak = false;
 var min = Number(document.getElementById("min").textContent);
 var sec = Number(document.getElementById("sec").textContent);
 var buttons = document.querySelectorAll(".btn");
 
-
+takeBreak();
 init();
 
 function init(){
@@ -16,8 +15,8 @@ function init(){
         buttons[i].style.display = "none";
     }
 
-    //remove extra zero from sec
-    removeExtraZero(document.getElementsByClassName("extra-zero")[1]);
+    // //remove extra zero from sec
+    // removeExtraZero(document.getElementsByClassName("extra-zero")[1]);
     
     letItCount();
 }
@@ -36,14 +35,17 @@ function letItCount(){
             if (min > 0){
                 min-=1;
             }
-            if (isBreak === true){
-                sec = 5;
-            }
+
+            sec = 60;
             changeMin(min);
             isFirst = false;
         }
         
         sec-=1;
+        //remove extra zeros
+        if(sec >= 10){
+            removeExtraZero(document.getElementsByClassName("extra-zero")[1]);
+        }
         changeSec(sec);
 
         //add extra zero when min/sec is less than 10
@@ -57,11 +59,12 @@ function letItCount(){
         
         if(min === 0 && sec === 0){
             stopIt();
+            takeBreak();
             for (var i = 0; i < buttons.length; i++){
                 buttons[i].style.display = "initial";
             }
         } else if(sec === 0){
-            sec = 10;
+            sec = 59;
             changeSec(sec);
             document.getElementsByClassName("extra-zero")[1].style.display = "none";
             min -=1;
@@ -98,9 +101,9 @@ function stopIt(){
 //continue working
 buttons[1].addEventListener("click", function(){
     isFirst = true;
-    isBreak = false;
-    min = 1;
-    sec = 10;
+    //assign working time
+    min = 5;
+    sec = 60;
     letItCount();
     this.style.display = "none";
     buttons[0].style.display = "none";
@@ -110,10 +113,20 @@ buttons[1].addEventListener("click", function(){
 //take a break 
 buttons[0].addEventListener("click", function(){
     isFirst = true;
-    isBreak = true;
-    min = 0;
+    min = 1;
     letItCount();
     this.style.display = "none";
     buttons[1].style.display = "none";
     document.querySelectorAll(".message")[0].textContent = "";
 })
+
+//take-a-break sound effect
+function takeBreak(){
+    var audio = new Audio("./sounds/zapsplat_fantasy_magical_musical_glisando_004_46176.mp3");
+    audio.play();
+}
+//back-to-work sound effect
+function goWork(){
+    var audio = new Audio("./sounds/zapsplat_bell_service_desk_press_x3_18039.mp3");
+    audio.play();
+}
