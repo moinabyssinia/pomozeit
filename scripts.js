@@ -129,7 +129,7 @@ buttons[0].addEventListener("click", function(){
 //take-a-break sound effect
 function takeBreak(){
     isBreak = true;
-    var audio = new Audio("./sounds/zapsplat_fantasy_magical_musical_glisando_004_46176.mp3");
+    var audio = new Audio("./sounds/bell_small_ring_001.mp3");
     audio.play();
 }
 //back-to-work sound effect

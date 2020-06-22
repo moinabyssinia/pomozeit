@@ -48,9 +48,34 @@ h2 {
 }
 
 .break {
-    background-color: rgb(23, 243, 16);
+    background-color: rgb(58, 182, 54);
+    color: white;
 }
 
 .work {
-    background-color: brown;
+    background-color: rgb(189, 65, 65);
+    color: white;
+}
+
+/* highlight buttons when hovered */
+.break:hover{
+    animation-name: break-color;
+    animation-duration: 500ms;
+    animation-fill-mode: forwards;
+}
+@keyframes break-color{
+    100% {
+        background-color: rgb(23, 243, 16);
+        color: black;
+    }
+}
+.work:hover{
+    animation-name: work-color;
+    animation-duration: 500ms;
+    animation-fill-mode: forwards;
+}
+@keyframes work-color{
+    100% {
+        background-color: rgb(236, 8, 8);
+    }
 }
