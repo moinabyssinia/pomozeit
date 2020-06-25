@@ -7,6 +7,14 @@ var min = Number(document.getElementById("min").textContent);
 var sec = Number(document.getElementById("sec").textContent);
 var buttons = document.querySelectorAll(".btn");
 
+//define quotes
+var dict = [
+    {'a': ['Henry Ford',"Thinking is the hardest work there is, which is probably the reason so few engage in it."]},
+    {'b': ['Colin Powell', "A dream does not become reality through magic; it takes sweat, determination, and hard work."]},
+    {'c': ['Oprah Winfrey', "Doing the best at this moment puts you in the best place for the next moment."]},
+
+]
+
 // init();
 
 // function init(){
@@ -102,6 +110,10 @@ function stopIt(){
 
     //create display message
     $("div.message-container").append("<h2>Time is Up!</h2>")
+    $("div.message-container").append("<h2>Time is Up!</h2>")
+
+    //display quotes
+    $("div.quotes").append("<h2>"+dict[0]['a'][1]+"</h2>")
 }
 
 
