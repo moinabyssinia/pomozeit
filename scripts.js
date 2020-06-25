@@ -98,7 +98,10 @@ function removeExtraZero(element){
 //stopping the countdown
 function stopIt(){
     clearInterval(pomoCountDown);
-    document.querySelectorAll(".message")[0].textContent = "Time is Up!"
+    // document.querySelectorAll(".message")[0].textContent = "Time is Up!"
+
+    //create display message
+    $("div.message-container").append("<h2>Time is Up!</h2>")
 }
 
 
@@ -112,7 +115,10 @@ buttons[1].addEventListener("click", function(){
     letItCount();
     this.style.display = "none";
     buttons[0].style.display = "none";
-    document.querySelectorAll(".message")[0].textContent = "";
+    //document.querySelectorAll(".message")[0].textContent = "";
+    
+    //remove appended message
+    $("div h2").remove()
 })
 
 //take a break 
@@ -123,7 +129,10 @@ buttons[0].addEventListener("click", function(){
     letItCount();
     this.style.display = "none";
     buttons[1].style.display = "none";
-    document.querySelectorAll(".message")[0].textContent = "";
+    //document.querySelectorAll(".message")[0].textContent = "";
+    
+    //remove appended message
+    $("div h2").remove()
 })
 
 //take-a-break sound effect
