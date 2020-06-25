@@ -44,7 +44,7 @@ function letItCount(){
                 min-=1;
             }
 
-            sec = 60;
+            sec = 10;
             changeMin(min);
             isFirst = false;
         }
@@ -77,7 +77,7 @@ function letItCount(){
                 buttons[i].style.display = "initial";
             }
         } else if(sec === 0){
-            sec = 59;
+            sec = 9;
             changeSec(sec);
             document.getElementsByClassName("extra-zero")[1].style.display = "none";
             min -=1;
@@ -109,11 +109,14 @@ function stopIt(){
     // document.querySelectorAll(".message")[0].textContent = "Time is Up!"
 
     //create display message
-    $("div.message-container").append("<h2>Time is Up!</h2>")
-    $("div.message-container").append("<h2>Time is Up!</h2>")
+    $("div.message-container").append("<h2 class = 'message'>Time is Up!</h2>")
 
     //display quotes
-    $("div.quotes").append("<h2>"+dict[0]['a'][1]+"</h2>")
+    $("div.quotes").append("<h2 class = 'quote'>"+dict[0]['a'][1]+"</h2>")
+
+    //display author
+    $("div.quotes").append("<p id = 'author'>--"+dict[0]['a'][0]+"</p>")
+
 }
 
 
@@ -122,29 +125,32 @@ function stopIt(){
 buttons[1].addEventListener("click", function(){
     isFirst = true;
     //assign working time
-    min = 1;
-    sec = 60;
+    min = 0;
+    sec = 10;
     letItCount();
     this.style.display = "none";
     buttons[0].style.display = "none";
     //document.querySelectorAll(".message")[0].textContent = "";
     
-    //remove appended message
+    //remove appended messages
     $("div h2").remove()
+    $("div.quotes p").remove()
 })
 
 //take a break 
 buttons[0].addEventListener("click", function(){
     isFirst = true;
     isBreak = true;
-    min = 1;
+    min = 0;
     letItCount();
     this.style.display = "none";
     buttons[1].style.display = "none";
     //document.querySelectorAll(".message")[0].textContent = "";
     
-    //remove appended message
+    //remove appended messages
     $("div h2").remove()
+    $("div.quotes p").remove()
+
 })
 
 //take-a-break sound effect
